@@ -1,0 +1,12 @@
+### SOON
+
+
+### NOW
+
+
+### DONE
+Implemented most of parsing logic
+    added entities classes: book, page, line and token
+    added parser classes: page parser, line parser (skeleton only)
+    added utilities classes: parse exception, substring
+    TODO: line parser implementation
