@@ -7,7 +7,7 @@ import cz.mg.parser.utilities.Substring;
 
 
 public class PageParser {
-    private static final int INDENTATION_SIZE = 4;
+    public static final int INDENTATION_SIZE = 4;
 
     public PageParser() {
     }
@@ -29,7 +29,6 @@ public class PageParser {
 
     private void addLine(Page page, Substring lineContent) {
         Line line = new Line(getIndentation(page, lineContent), lineContent);
-        page.getChildren().addLast(line);
 
         int lastIndentation = page.getChildren().getLast().getIndentation();
         if(isLastEmpty(page)){
@@ -38,8 +37,9 @@ public class PageParser {
             if(line.getIndentation() > (lastIndentation + 1)) throw new ParseException("Error at line " + page.getChildren().count() + " column " + 0 + ": Invalid indentation. Current indentation " + line.getIndentation() + " cannot be greater than " + lastIndentation + " + 1. Are you missing parent line or did you indent too much?");
         }
 
+        page.getChildren().addLast(line);
         LineParser lineParser = new LineParser();
-        lineParser.parse(line);
+        lineParser.parse(line, page.getChildren().count() - 1);
     }
 
     private int getLastIndentation(Page page){

@@ -13,6 +13,14 @@ public class Token extends TreeLeaf<Line> {
         this.type = type;
     }
 
+    public Substring getContent() {
+        return content;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
     public enum Type {
         SPECIAL,
         COMMENT,
