@@ -18,6 +18,7 @@ public class LineParser {
             char ch = reader.take();
             Token token;
             switch(ch){
+                case ' ': continue;
                 case '#': token = parseComment(reader); break;
                 case '"': token = parseLiteral(reader); break;
                 default: token = isWordCharacter(ch) ? parseWord(reader) : parseSpecial(reader);
