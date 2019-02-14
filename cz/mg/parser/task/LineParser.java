@@ -1,12 +1,13 @@
 package cz.mg.parser.task;
 
+import cz.mg.collections.tree.TreeLeaf;
 import cz.mg.parser.entity.Line;
 import cz.mg.parser.entity.Token;
 import cz.mg.parser.utilities.ParseException;
 import cz.mg.parser.utilities.Substring;
 
 
-public class LineParser {
+public class LineParser extends TreeLeaf<PageParser> {
     private int lineNumber = -1;
 
     public void parse(Line line, int lineNumber){
@@ -23,7 +24,7 @@ public class LineParser {
                 case '"': token = parseLiteral(reader); break;
                 default: token = isWordCharacter(ch) ? parseWord(reader) : parseSpecial(reader);
             }
-            line.getChildren().addLast(token);
+            token.setParent(line);
         }
     }
 

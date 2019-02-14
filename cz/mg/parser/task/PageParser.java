@@ -1,12 +1,13 @@
 package cz.mg.parser.task;
 
+import cz.mg.collections.tree.TreeNode;
 import cz.mg.parser.utilities.ParseException;
 import cz.mg.parser.entity.Line;
 import cz.mg.parser.entity.Page;
 import cz.mg.parser.utilities.Substring;
 
 
-public class PageParser {
+public class PageParser extends TreeNode<Parser, LineParser> {
     public static final int INDENTATION_SIZE = 4;
 
     public PageParser() {
@@ -29,6 +30,7 @@ public class PageParser {
 
     private void addLine(Page page, Substring lineContent) {
         Line line = new Line(getIndentation(page, lineContent), lineContent);
+        line.setParent(page);
 
         int lastIndentation = page.getChildren().getLast().getIndentation();
         if(isLastEmpty(page)){
@@ -39,6 +41,7 @@ public class PageParser {
 
         page.getChildren().addLast(line);
         LineParser lineParser = new LineParser();
+        lineParser.setParent(this);
         lineParser.parse(line, page.getChildren().count() - 1);
     }
 

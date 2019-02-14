@@ -4,7 +4,7 @@ import cz.mg.collections.tree.TreeNode;
 import cz.mg.parser.utilities.Substring;
 
 
-public class Line extends TreeNode<Line, Token> {
+public class Line extends TreeNode<Page, Token> {
     private final int indentation;
     private final Substring content;
 

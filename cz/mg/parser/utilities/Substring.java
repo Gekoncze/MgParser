@@ -51,4 +51,12 @@ public class Substring {
     public String toString() {
         return string.substring(begin, end);
     }
+
+    public static void union(Substring a, Substring b){
+        if(a.string != b.string) throw new RuntimeException("Cannot union foreign substrings.");
+        String string = a.string;
+        int begin = Math.min(a.begin, b.begin);
+        int end = Math.max(a.end, b.end);
+        Substring c = new Substring(string, begin, end);
+    }
 }
