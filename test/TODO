@@ -5,8 +5,3 @@
 
 
 ### DONE
-Fixes and polishment
-    added parser class
-    fixed line definition
-    forgot to add line to page after creation
-    added union method to substring
