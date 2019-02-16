@@ -22,7 +22,7 @@ public class LineParser extends TreeLeaf<PageParser> {
                 case ' ': continue;
                 case '#': token = parseComment(reader); break;
                 case '"': token = parseLiteral(reader); break;
-                default: token = isWordCharacter(ch) ? parseWord(reader) : parseSpecial(reader);
+                default: token = isWordCharacter(ch) ? parseWord(reader) : parseSpecial(reader); break;
             }
             token.setParent(line);
         }
@@ -51,10 +51,10 @@ public class LineParser extends TreeLeaf<PageParser> {
             char ch = reader.take();
             if(!isWordCharacter(ch)){
                 reader.backOff();
-                reader.setEnd();
+                break;
             }
         }
-
+        reader.setEnd();
         Substring s = reader.getSubstring();
         Token.Type t = isKeyword(s) ? Token.Type.KEYWORD : Token.Type.NAME;
         return new Token(s, t);

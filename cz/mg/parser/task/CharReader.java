@@ -5,9 +5,9 @@ import cz.mg.parser.utilities.Substring;
 
 public class CharReader {
     private final Substring text;
-    private int position = 0;
-    private int begin = 0;
-    private int end = 0;
+    public int position = 0;
+    public int begin = 0;
+    public int end = 0;
 
     public CharReader(Substring text) {
         this.text = text;

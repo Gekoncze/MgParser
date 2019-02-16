@@ -13,19 +13,23 @@ public class Substring {
     }
 
     public Substring(String string, int begin, int end) {
-        if(begin < 0) throw new RuntimeException("Invalid begin index for substring: " + begin + " (must be >= 0)");
-        if(end > string.length()) throw new RuntimeException("Invalid end index for substring: " + end + " (must be <= " + string.length() + ")");
+        check(begin, end, string.length());
         this.string = string;
         this.begin = begin;
         this.end = end;
     }
 
     public Substring(Substring substring, int begin, int end) {
-        if(begin < 0) throw new RuntimeException("Invalid begin index for substring: " + begin + " (must be >= 0)");
-        if(end > substring.count()) throw new RuntimeException("Invalid end index for substring: " + end + " (must be <= " + substring.count() + ")");
+        check(begin, end, substring.count());
         this.string = substring.string;
         this.begin = substring.begin + begin;
         this.end = substring.begin + end;
+    }
+
+    private static void check(int begin, int end, int count){
+        if(begin < 0) throw new RuntimeException("Invalid begin index for substring: " + begin + " (must be >= 0)");
+        if(end > count) throw new RuntimeException("Invalid end index for substring: " + end + " (must be <= " + count + ")");
+        if(end < begin) throw new RuntimeException("Invalid end and begin index for substring: begin " + begin + " vs end " + end + " (begin must be <= end)");
     }
 
     public int count(){
