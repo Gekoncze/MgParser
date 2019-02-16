@@ -5,6 +5,3 @@
 
 
 ### DONE
-bug fixes
-    missing substring begin-end check
-    word parsing - misplaced reader set end

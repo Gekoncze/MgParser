@@ -3,6 +3,7 @@ package cz.mg.parser.task;
 import cz.mg.collections.tree.TreeLeaf;
 import cz.mg.parser.entity.Line;
 import cz.mg.parser.entity.Token;
+import cz.mg.parser.utilities.CharReader;
 import cz.mg.parser.utilities.ParseException;
 import cz.mg.parser.utilities.Substring;
 

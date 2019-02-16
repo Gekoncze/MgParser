@@ -1,4 +1,4 @@
-package cz.mg.parser.task;
+package cz.mg.parser.utilities;
 
 import cz.mg.parser.utilities.Substring;
 
