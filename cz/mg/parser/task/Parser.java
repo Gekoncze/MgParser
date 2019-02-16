@@ -11,6 +11,7 @@ public class Parser extends TreeRoot<PageParser> {
         Book book = new Book();
         for(String text : texts){
             Page page = new Page(new Substring(text));
+            page.setParent(book);
             PageParser pageParser = new PageParser();
             pageParser.setParent(this);
             pageParser.parse(page);
