@@ -1,8 +1,8 @@
 package cz.mg.parser.utilities;
 
 
-public class ParseException extends RuntimeException {
-    public ParseException(String s) {
-        super(s);
+public class ParseException extends TraceableException {
+    public ParseException(Substring element, String message) {
+        super(element, message);
     }
 }

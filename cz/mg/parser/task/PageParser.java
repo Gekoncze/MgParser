@@ -22,7 +22,7 @@ public class PageParser extends TreeNode<Parser, LineParser> {
                 addLine(page, new Substring(text, begin, i));
                 begin = i + 1;
             } else if(!isValid(ch)){
-                throw new ParseException("Error at line " + page.getChildren().count() + " column " + i + ": Unsupported character code " + (int)ch + ". Only ASCII codes from 32 to 126 are supported. Did you type in some fancy exotic characters?");
+                throw new ParseException(new Substring(text, i, i+1), "Unsupported character code " + (int)ch + ". Only ASCII codes from 32 to 126 are supported. Did you type in some fancy exotic characters?");
             }
         }
         addLine(page, new Substring(text, begin, text.count()));
@@ -34,9 +34,9 @@ public class PageParser extends TreeNode<Parser, LineParser> {
 
         int lastIndentation = page.getChildren().getLast().getIndentation();
         if(isLastEmpty(page)){
-            if(line.getIndentation() > lastIndentation) throw new ParseException("Error at line " + page.getChildren().count() + " column " + 0 + ": Invalid indentation. Current indentation " + line.getIndentation() + " cannot be greater than " + lastIndentation + ". Are you missing parent line or did you indent too much?");
+            if(line.getIndentation() > lastIndentation) throw new ParseException(line.getContent(), "Invalid indentation. Current indentation " + line.getIndentation() + " cannot be greater than " + lastIndentation + ". Are you missing parent line or did you indent too much?");
         } else {
-            if(line.getIndentation() > (lastIndentation + 1)) throw new ParseException("Error at line " + page.getChildren().count() + " column " + 0 + ": Invalid indentation. Current indentation " + line.getIndentation() + " cannot be greater than " + lastIndentation + " + 1. Are you missing parent line or did you indent too much?");
+            if(line.getIndentation() > (lastIndentation + 1)) throw new ParseException(line.getContent(), "Invalid indentation. Current indentation " + line.getIndentation() + " cannot be greater than " + lastIndentation + " + 1. Are you missing parent line or did you indent too much?");
         }
 
         page.getChildren().addLast(line);
@@ -68,7 +68,7 @@ public class PageParser extends TreeNode<Parser, LineParser> {
                 if(i % INDENTATION_SIZE == 0){
                     return i / INDENTATION_SIZE;
                 } else {
-                    throw new ParseException("Error at line " + page.getChildren().count() + " column " + i + ": Invalid number of spaces for indentation. Expected multiple of " + INDENTATION_SIZE + ", given " + i + ".");
+                    throw new ParseException(line, "Invalid number of spaces for indentation. Expected multiple of " + INDENTATION_SIZE + ", given " + i + ".");
                 }
             }
         }

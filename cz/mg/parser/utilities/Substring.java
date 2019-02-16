@@ -32,6 +32,18 @@ public class Substring {
         if(end < begin) throw new RuntimeException("Invalid end and begin index for substring: begin " + begin + " vs end " + end + " (begin must be <= end)");
     }
 
+    public String getString() {
+        return string;
+    }
+
+    public int getBegin() {
+        return begin;
+    }
+
+    public int getEnd() {
+        return end;
+    }
+
     public int count(){
         return end - begin;
     }

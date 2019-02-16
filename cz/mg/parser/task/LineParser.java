@@ -44,7 +44,8 @@ public class LineParser extends TreeLeaf<PageParser> {
                 return new Token(reader.getSubstring(), Token.Type.LITERAL);
             }
         }
-        throw new ParseException("At line " + lineNumber + " column " + reader.getColumn() + ": Unclosed literal. Missing \".");
+        reader.setEnd();
+        throw new ParseException(reader.getSubstring(), "Unclosed literal. Missing \".");
     }
 
     private Token parseWord(CharReader reader){
